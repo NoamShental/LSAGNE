@@ -1,0 +1,44 @@
+,perturbation,tumor
+163,genistein,HA1E kidney normal kidney
+194,genistein,HCC515 lung carcinoma
+292,genistein,PC3 prostate adenocarcinoma
+376,genistein,VCAP prostate carcinoma
+380,geldanamycin,VCAP prostate carcinoma
+730,estradiol,HA1E kidney normal kidney
+733,tamoxifen,HA1E kidney normal kidney
+757,estradiol,HCC515 lung carcinoma
+760,tamoxifen,HCC515 lung carcinoma
+852,estradiol,PC3 prostate adenocarcinoma
+857,tamoxifen,PC3 prostate adenocarcinoma
+1055,raloxifene,HA1E kidney normal kidney
+1272,raloxifene,PC3 prostate adenocarcinoma
+1477,tamoxifen,A375 skin malignant melanoma
+1555,tamoxifen,A549 lung non small cell lung cancer| carcinoma
+1645,geldanamycin,HA1E kidney normal kidney
+1648,geldanamycin,A375 skin malignant melanoma
+1651,geldanamycin,A549 lung non small cell lung cancer| carcinoma
+1691,tamoxifen,HT29 large intestine colorectal adenocarcinoma
+1775,tamoxifen,MCF7 breast adenocarcinoma
+2354,geldanamycin,MCF7 breast adenocarcinoma
+2359,geldanamycin,PC3 prostate adenocarcinoma
+2952,geldanamycin,HT29 large intestine colorectal adenocarcinoma
+5625,estradiol,A549 lung non small cell lung cancer| carcinoma
+5792,estradiol,MCF7 breast adenocarcinoma
+7211,genistein,A549 lung non small cell lung cancer| carcinoma
+7334,genistein,MCF7 breast adenocarcinoma
+7645,raloxifene,A549 lung non small cell lung cancer| carcinoma
+7723,raloxifene,MCF7 breast adenocarcinoma
+20724,geldanamycin,HCC515 lung carcinoma
+20881,raloxifene,HCC515 lung carcinoma
+21516,genistein,A375 skin malignant melanoma
+21534,raloxifene,A375 skin malignant melanoma
+21546,estradiol,A375 skin malignant melanoma
+22171,genistein,HEPG2 liver hepatocellular carcinoma
+22183,geldanamycin,HEPG2 liver hepatocellular carcinoma
+22189,raloxifene,HEPG2 liver hepatocellular carcinoma
+22201,estradiol,HEPG2 liver hepatocellular carcinoma
+22213,tamoxifen,HEPG2 liver hepatocellular carcinoma
+22331,genistein,HT29 large intestine colorectal adenocarcinoma
+22348,raloxifene,HT29 large intestine colorectal adenocarcinoma
+22360,estradiol,HT29 large intestine colorectal adenocarcinoma
+22966,geldanamycin,NPC central nervous system normal stem fibroblast-derived iPScs
