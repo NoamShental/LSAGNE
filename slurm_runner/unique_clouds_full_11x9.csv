@@ -1,0 +1,100 @@
+perturbation,tumor_code
+geldanamycin,HCC515
+geldanamycin,HEPG2
+geldanamycin,HA1E
+geldanamycin,VCAP
+geldanamycin,PC3
+geldanamycin,MCF7
+geldanamycin,A375
+geldanamycin,A549
+geldanamycin,HT29
+raloxifene,HCC515
+raloxifene,HEPG2
+raloxifene,HA1E
+raloxifene,VCAP
+raloxifene,PC3
+raloxifene,MCF7
+raloxifene,A375
+raloxifene,A549
+raloxifene,HT29
+trichostatin-a,HCC515
+trichostatin-a,HEPG2
+trichostatin-a,HA1E
+trichostatin-a,VCAP
+trichostatin-a,PC3
+trichostatin-a,MCF7
+trichostatin-a,A375
+trichostatin-a,A549
+trichostatin-a,HT29
+wortmannin,HCC515
+wortmannin,HEPG2
+wortmannin,HA1E
+wortmannin,VCAP
+wortmannin,PC3
+wortmannin,MCF7
+wortmannin,A375
+wortmannin,A549
+wortmannin,HT29
+vorinostat,HCC515
+vorinostat,HEPG2
+vorinostat,HA1E
+vorinostat,VCAP
+vorinostat,PC3
+vorinostat,MCF7
+vorinostat,A375
+vorinostat,A549
+vorinostat,HT29
+isonicotinohydroxamic-acid,HCC515
+isonicotinohydroxamic-acid,HEPG2
+isonicotinohydroxamic-acid,HA1E
+isonicotinohydroxamic-acid,VCAP
+isonicotinohydroxamic-acid,PC3
+isonicotinohydroxamic-acid,MCF7
+isonicotinohydroxamic-acid,A375
+isonicotinohydroxamic-acid,A549
+isonicotinohydroxamic-acid,HT29
+sirolimus,HCC515
+sirolimus,HEPG2
+sirolimus,HA1E
+sirolimus,VCAP
+sirolimus,PC3
+sirolimus,MCF7
+sirolimus,A375
+sirolimus,A549
+sirolimus,HT29
+estriol,HCC515
+estriol,HEPG2
+estriol,HA1E
+estriol,VCAP
+estriol,PC3
+estriol,MCF7
+estriol,A375
+estriol,A549
+estriol,HT29
+tamoxifen,HCC515
+tamoxifen,HEPG2
+tamoxifen,HA1E
+tamoxifen,VCAP
+tamoxifen,PC3
+tamoxifen,MCF7
+tamoxifen,A375
+tamoxifen,A549
+tamoxifen,HT29
+time 24h,HCC515
+time 24h,HEPG2
+time 24h,HA1E
+time 24h,VCAP
+time 24h,PC3
+time 24h,MCF7
+time 24h,A375
+time 24h,A549
+time 24h,HT29
+DMSO,HCC515
+DMSO,HEPG2
+DMSO,HA1E
+DMSO,VCAP
+DMSO,PC3
+DMSO,MCF7
+DMSO,A375
+DMSO,A549
+DMSO,HT29

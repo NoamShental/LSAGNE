@@ -1,0 +1,168 @@
+name: "experiment_13_test_only_cpu_32_ram_120_v8"
+api_ver: 4
+technical_specs:
+  conda_env_path: "/RG/compbio/emil/lsagnev8-test"
+  paths:
+    root: "/RG/compbio/emil/experiments_root"
+    code: "/RG/compbio/emil/code/26_10_2024"
+  augmentation_resources:
+    cpu_cores: 32
+    ram_gb: 120
+  training_resources:
+    cpu_cores: 32
+    ram_gb: 120
+  use_gpu: null
+cmap_organization_parameters:
+  - alias: cmap11x9_geldanamycin_12
+    raw_cmap_folder: "/RG/compbio/emil/cmap"
+    perturbation_to_max_size:
+      "geldanamycin": 12
+    recreate_for_each_run: true
+    random_seed: null
+  - alias: cmap11x9_trichostatin-a_12
+    raw_cmap_folder: "/RG/compbio/emil/cmap"
+    perturbation_to_max_size:
+      "trichostatin-a": 12
+    recreate_for_each_run: true
+    random_seed: null
+augmentation_parameters:
+  raw_augmentation_folder: "/RG/compbio/emil/data_augmentation"
+  drug_batch_size: 15
+  augmentation_rate: 0.7
+  db_building:
+    alias: baseline_aug_db
+    min_drug_samples_per_cellline: 6
+    min_cellines_perdrug: 6
+    min_genes_per_go: 4
+    max_genes_per_go: 50
+    use_compression: False
+    calc_beta: False
+  samples_generation:
+    - alias: aug_p_7_cp_7_g_15_cg_5
+      n_pathways: 7
+      n_corrpathways: 7
+      n_genes: 15
+      n_corrgenes: 5
+      use_variance: perDrugMax
+      num_of_samples: 100_000
+      proba_pathway: 1.0
+      proba_gene: 1.0
+    - alias: aug_p_7_cp_7_g_10_cg_7
+      n_pathways: 7
+      n_corrpathways: 7
+      n_genes: 10
+      n_corrgenes: 7
+      use_variance: perDrugMax
+      num_of_samples: 100_000
+      proba_pathway: 1.0
+      proba_gene: 1.0
+    - alias: aug_p_7_cp_5_g_15_cg_7
+      n_pathways: 7
+      n_corrpathways: 5
+      n_genes: 15
+      n_corrgenes: 7
+      use_variance: perDrugMax
+      num_of_samples: 100_000
+      proba_pathway: 1.0
+      proba_gene: 1.0
+    - alias: aug_p_10_cp_10_g_15_cg_10
+      n_pathways: 10
+      n_corrpathways: 10
+      n_genes: 15
+      n_corrgenes: 10
+      use_variance: perDrugMax
+      num_of_samples: 100_000
+      proba_pathway: 1.0
+      proba_gene: 1.0
+    - alias: aug_p_10_cp_10_g_10_cg_10
+      n_pathways: 10
+      n_corrpathways: 10
+      n_genes: 10
+      n_corrgenes: 10
+      use_variance: perDrugMax
+      num_of_samples: 100_000
+      proba_pathway: 1.0
+      proba_gene: 1.0
+left_one_out_specs:
+  number_of_repeats: 2
+  clouds:
+    - left_out: [ "A549", "geldanamycin" ]
+      cv: [ "HCC515", "geldanamycin" ]
+      augmented_perturbations: [ "geldanamycin" ]
+      cmap: cmap11x9_geldanamycin_12
+      fold_change_factor: 1.5
+    - left_out: [ "A375", "trichostatin-a" ]
+      cv: [ "HCC515", "trichostatin-a" ]
+      augmented_perturbations: [ "trichostatin-a" ]
+      cmap: cmap11x9_trichostatin-a_12
+    - left_out: [ "A375", "trichostatin-a" ]
+      cv: [ "HCC515", "trichostatin-a" ]
+      augmented_perturbations: []
+      cmap: cmap11x9_trichostatin-a_12
+training_parameters:
+  {
+    "left_out_cloud": null, #this field will be overridden by code
+    "cross_validation_clouds": null, #this field will be overridden by code
+    "augmentation_params": null, #this field will be overridden by code
+    "perturbations_equivalence_sets": [
+      [
+        "isonicotinohydroxamic-acid",
+        "raloxifene"
+      ],
+      [
+        "vorinostat",
+        "trichostatin-a"
+      ]
+    ],
+    "perturbations_equivalence_losses_coefs": {
+      "clouds_classifier": 0,
+      "treatment_vectors_different_directions_using_anchors": 0,
+      "treatment_vectors_different_directions_using_batch": 0
+    },
+    "partial_cloud_training": [ ],
+    "n_epochs": 60,
+    "lr": 0.0001,
+    "warmup_reference_points_duration": 30,
+    "reference_point_reselect_period": 4300,
+    "embedding_dim": 20,
+    "max_radius": 0.1,
+    "loss_coef": {
+      "clouds_classifier": 5000,
+      "tissues_classifier": 5000,
+      "distance_from_cloud_center_6h": 10000,
+      "distance_from_cloud_center_dmso_24h": 10000,
+      "distance_from_cloud_center_24h_without_dmso_24h": 10000,
+      "max_radius_limiter": 10000,
+      "vae_kld": 0.01,
+      "treatment_vectors_collinearity_using_batch_treated": 10000,
+      "treatment_vectors_collinearity_using_batch_control": 10000,
+      "drug_vectors_collinearity_using_batch_treated": 10000,
+      "drug_vectors_collinearity_using_batch_control": 10000,
+      "treatment_vectors_different_directions_using_batch": 10000,
+      "drug_and_treatment_vectors_different_directions_using_batch": 10000,
+      "treatment_and_drug_vectors_distance_p1_p2_loss": 10000,
+      "treatment_and_drug_vectors_distance_p1_p2_to_treated_loss": 10000
+    },
+    "warmup_reference_points_loss_coef": {
+      "clouds_classifier": 5000,
+      "tissues_classifier": 5000,
+      "distance_from_cloud_center_6h": 0,
+      "distance_from_cloud_center_dmso_24h": 0,
+      "distance_from_cloud_center_24h_without_dmso_24h": 0,
+      "max_radius_limiter": 0,
+      "vae_kld": 0.01,
+      "treatment_vectors_collinearity_using_batch_treated": 0,
+      "treatment_vectors_collinearity_using_batch_control": 0,
+      "drug_vectors_collinearity_using_batch_treated": 0,
+      "drug_vectors_collinearity_using_batch_control": 0,
+      "treatment_vectors_different_directions_using_batch": 0,
+      "drug_and_treatment_vectors_different_directions_using_batch": 0,
+      "treatment_and_drug_vectors_distance_p1_p2_loss": 0,
+      "treatment_and_drug_vectors_distance_p1_p2_to_treated_loss": 0
+    },
+    "trim_treated_clouds_ratio_to_keep": 0.85,
+    "trim_untreated_clouds_and_time_24h_ratio_to_keep": 0.5,
+    "clouds_trimming_epochs": [
+      20
+    ]
+  }

@@ -1,0 +1,23 @@
+name: lsagnev8
+channels:
+  - conda-forge
+  - pytorch
+  - nvidia
+dependencies:
+  - python=3.11
+  - numpy=1.26.4
+  - matplotlib=3.8.3
+  - pandas=1.4.2
+  - prefect=1.2
+  - seaborn=0.13.2
+  - scikit-learn=1.4.1
+  - umap-learn=0.5.5
+  - scipy=1.12.0
+  - pytorch=2.2.1
+  - torchvision=0.17.1
+  - torchaudio=2.2.1
+#  - pytorch-cuda=12.1
+  - pytables=3.9.2
+  - PyYAML
+  - pydantic=2.7.0
+  - Jinja2=3.1.3

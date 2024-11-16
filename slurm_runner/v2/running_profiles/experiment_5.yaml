@@ -1,0 +1,137 @@
+name: "experiment_5"
+technical_specs:
+  conda_env_path: "/RG/compbio/emil/lsagnev8-test"
+  paths:
+    root: "/RG/compbio/emil/experiments_root"
+    code: "/RG/compbio/emil/code/21_5_2024"
+  augmentation_resources:
+    cpu_cores: 32
+    ram_gb: 16
+  training_resources:
+    cpu_cores: 64
+    ram_gb: 16
+  use_gpu: null
+cmap_organization_parameters:
+  alias: cmap11x9
+  raw_cmap_folder: "/RG/compbio/emil/cmap"
+  perturbation_to_max_size:
+  random_seed: 0
+augmentation_parameters:
+  raw_augmentation_folder: "/RG/compbio/emil/data_augmentation"
+  drug_batch_size: 15
+  db_building:
+    alias: baseline_aug_db
+    min_drug_samples_per_cellline: 6
+    min_cellines_perdrug: 6
+    min_genes_per_go: 4
+    max_genes_per_go: 50
+    use_compression: False
+    calc_beta: False
+  samples_generation:
+    alias: baseline_aug_samples_gen
+    num_of_samples: 100_000
+    n_pathways: 5
+    n_corrpathways: 3
+    proba_pathway: 1.0
+    n_genes: 5
+    n_corrgenes: 5
+    proba_gene: 1.0
+left_one_out_specs:
+  number_of_repeats: 2
+  clouds:
+    # geldanamycin
+    - left_out: [ "A549", "geldanamycin" ]
+      cv: [ "HCC515", "geldanamycin" ]
+      augmented_perturbations: [ "geldanamycin" ]
+    - left_out: [ "PC3", "geldanamycin" ]
+      cv: [ "VCAP", "geldanamycin" ]
+      augmented_perturbations: [ "geldanamycin" ]
+    ## wortmannin is closest to geldanamycin, so we want to check if there is a confusion
+    - left_out: [ "A549", "wortmannin" ]
+      cv: [ "HCC515", "wortmannin" ]
+      augmented_perturbations: [ "geldanamycin" ]
+    - left_out: [ "PC3", "wortmannin" ]
+      cv: [ "VCAP", "wortmannin" ]
+      augmented_perturbations: [ "geldanamycin" ]
+    # trichostatin-a
+    - left_out: [ "A549", "trichostatin-a" ]
+      cv: [ "HCC515", "trichostatin-a" ]
+      augmented_perturbations: [ "trichostatin-a" ]
+    - left_out: [ "PC3", "trichostatin-a" ]
+      cv: [ "VCAP", "trichostatin-a" ]
+      augmented_perturbations: [ "trichostatin-a" ]
+    # vorinostat is closest to trichostatin-a, so we want to check if there is a confusion
+    - left_out: [ "A549", "vorinostat" ]
+      cv: [ "HCC515", "vorinostat" ]
+      augmented_perturbations: [ "trichostatin-a" ]
+    - left_out: [ "PC3", "vorinostat" ]
+      cv: [ "VCAP", "vorinostat" ]
+      augmented_perturbations: [ "trichostatin-a" ]
+training_parameters:
+  {
+    "left_out_cloud": null, #this field will be overridden by code
+    "cross_validation_clouds": null, #this field will be overridden by code
+    "perturbations_equivalence_sets": [
+      [
+        "isonicotinohydroxamic-acid",
+        "raloxifene"
+      ],
+      [
+        "vorinostat",
+        "trichostatin-a"
+      ]
+    ],
+    "perturbations_equivalence_losses_coefs": {
+      "clouds_classifier": 0,
+      "treatment_vectors_different_directions_using_anchors": 0,
+      "treatment_vectors_different_directions_using_batch": 0
+    },
+#    "clouds_to_augment": [ ], will be filled using the "left_one_out_specs"
+    "augmentation_rate": 0.7,
+    "partial_cloud_training": [ ],
+    "n_epochs": 5000,
+    "lr": 0.0001,
+    "warmup_reference_points_duration": 300,
+    "reference_point_reselect_period": 4300,
+    "embedding_dim": 20,
+    "max_radius": 0.1,
+    "loss_coef": {
+      "clouds_classifier": 5000,
+      "tissues_classifier": 5000,
+      "distance_from_cloud_center_6h": 10000,
+      "distance_from_cloud_center_dmso_24h": 10000,
+      "distance_from_cloud_center_24h_without_dmso_24h": 10000,
+      "max_radius_limiter": 10000,
+      "vae_kld": 0.01,
+      "treatment_vectors_collinearity_using_batch_treated": 10000,
+      "treatment_vectors_collinearity_using_batch_control": 10000,
+      "drug_vectors_collinearity_using_batch_treated": 10000,
+      "drug_vectors_collinearity_using_batch_control": 10000,
+      "treatment_vectors_different_directions_using_batch": 10000,
+      "drug_and_treatment_vectors_different_directions_using_batch": 10000,
+      "treatment_and_drug_vectors_distance_p1_p2_loss": 10000,
+      "treatment_and_drug_vectors_distance_p1_p2_to_treated_loss": 10000
+    },
+    "warmup_reference_points_loss_coef": {
+      "clouds_classifier": 5000,
+      "tissues_classifier": 5000,
+      "distance_from_cloud_center_6h": 0,
+      "distance_from_cloud_center_dmso_24h": 0,
+      "distance_from_cloud_center_24h_without_dmso_24h": 0,
+      "max_radius_limiter": 0,
+      "vae_kld": 0.01,
+      "treatment_vectors_collinearity_using_batch_treated": 0,
+      "treatment_vectors_collinearity_using_batch_control": 0,
+      "drug_vectors_collinearity_using_batch_treated": 0,
+      "drug_vectors_collinearity_using_batch_control": 0,
+      "treatment_vectors_different_directions_using_batch": 0,
+      "drug_and_treatment_vectors_different_directions_using_batch": 0,
+      "treatment_and_drug_vectors_distance_p1_p2_loss": 0,
+      "treatment_and_drug_vectors_distance_p1_p2_to_treated_loss": 0
+    },
+    "trim_treated_clouds_ratio_to_keep": 0.85,
+    "trim_untreated_clouds_and_time_24h_ratio_to_keep": 0.5,
+    "clouds_trimming_epochs": [
+      1000
+    ]
+  }

@@ -1,0 +1,41 @@
+#!/bin/bash
+
+### Resource allocation
+#SBATCH --partition=work
+#SBATCH --output="{{ sbatch_output_file }}"
+#SBATCH --error="{{ sbatch_error_file }}"
+#SBATCH --ntasks=1                          # Run a single task
+#SBATCH --cpus-per-task={{ cpu_cores }}     # Number of CPU cores per task
+#SBATCH --mem={{ ram_mem }}GB
+#SBATCH --job-name="{{ job_name }}"
+{% if use_gpu %}
+#SBATCH --gres=gpu:{{ gpu_type }}
+#SBATCH --qos=gpu
+{% endif %}
+
+unset SLURM_CPU_BIND
+unset SLURM_CPU_BIND_TYPE
+unset SLURM_CPU_BIND_LIST
+unset SLURM_CPU_BIND_VERBOSE
+
+### Modules
+#module load Anaconda3/2022.05
+
+### Runtime
+source activate {{ conda_env_path }}
+export PREFECT__FLOWS__CHECKPOINTING=true
+export PYTHONUNBUFFERED=1
+export PYTHONPATH={{ code_path }}:$PYTHONPATH
+
+{% if command_params %}
+srun {{ command }} \
+{% for arg_name, arg_value in command_params.items() %}
+{%- if arg_value is not none -%}
+{{ arg_name }} "{{ arg_value }}"{% if not loop.last %} \{% endif %}
+{% else %}
+{{ arg_name }}{% if not loop.last %} \{% endif %}
+{% endif %}
+{%- endfor %}
+{% else %}
+srun {{ command }}
+{% endif %}
