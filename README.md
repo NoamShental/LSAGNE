@@ -1,3 +1,7 @@
+Code related to the Yehezkel et al. manuscript
+"Explicit conditioning of a generative drug-response deep learning model's latent space enables the correct prediction of combinatorial drug effects"
+
+
 ## Remote Debug
 Bring up all port forwardings and sync folders:
 
